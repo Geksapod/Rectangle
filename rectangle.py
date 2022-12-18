@@ -34,6 +34,9 @@ class Rectangle:
     def __le__(self, other):
         return self.square() <= other.square()
 
+    def __eq__(self, other):
+        return self.square() == other.square()
+
     def __add__(self, other):
         """Return self+other"""
 
