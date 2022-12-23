@@ -5,19 +5,19 @@ class Rectangle:
     A class used to represent a rectangle.
 
     Args:
-        a (int): The length of the rectangle.
-        b (int): The width of the rectangle.
+        a (int | float): The length of the rectangle.
+        b (int | float): The width of the rectangle.
 
     Attributes:
-        a (int): The length of the rectangle.
-        b (int): The width of the rectangle.
+        a (int | float): The length of the rectangle.
+        b (int | float): The width of the rectangle.
     """
 
-    def __init__(self, a: int, b: int):
+    def __init__(self, a: int | float, b: int | float):
         self.a = a
         self.b = b
 
-    def square (self) -> int:
+    def square(self) -> int | float:
         """Returns the square of the rectangle."""
 
         return self.a * self.b
@@ -41,30 +41,30 @@ class Rectangle:
         """Return self+other"""
 
         if isinstance(other, Rectangle):
-            return self.square() + other.square()
-        if isinstance(other, int):
-            return self.square() + other
+            return Rectangle(self.a, ((self.square() + other.square()) / self.a))
+        if isinstance(other, int | float):
+            return Rectangle(self.a, (self.square() + other) / self.a)
         return NotImplemented
 
     def __radd__(self, other):
         """Return other+self"""
 
-        if isinstance(other, int):
-            return self.square() + other
+        if isinstance(other, int | float):
+            return Rectangle(self.a, (self.square() + other) / self.a)
         return NotImplemented
 
     def __mul__(self, other):
         """Return self*other"""
 
         if isinstance(other, int | float):
-            return self.square() * other
+            return Rectangle((self.a * other), self.b)
         return NotImplemented
 
     def __rmul__(self, other):
         """Return other*self"""
 
-        if isinstance(other, int) or isinstance(other, float):
-            return self.square() * other
+        if isinstance(other, int | float):
+            return Rectangle((self.a * other), self.b)
         return NotImplemented
 
     def __str__(self):

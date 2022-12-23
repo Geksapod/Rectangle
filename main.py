@@ -50,6 +50,7 @@ if __name__ == "__main__":
         print("-" * 25)
         print(f"Min rectangle is {min(rectangle_dict.values())}")
         print("-" * 25)
+        res = 0
         print(f"Sum of all rectangles is {sum(rectangle_dict.values())}")
         print("-" * 25)
         for key, value in rectangle_dict.items():
